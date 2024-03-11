@@ -10,16 +10,18 @@ app.listen(8081, function(){
 // Chamando a biblioteca handlebars
 const handlebars = require('express-handlebars');
 
+const sequelize = require('sequelize');
+
+const sequelize2 = new sequelize('testenode', 'root', '', {
+    host: "localhost",
+    dialect: 'mysql'
+});
+
 // Configurando o handlebars e o template engine
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view.engine', 'handlebars');
 
-
-
-
-
-
- /*
+/*
 // Rota chamando o html
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/html/index.html");
