@@ -2,6 +2,24 @@ var express = require('express');
 
 const app = express();
 
+// Porta do protocolo http
+app.listen(8081, function(){
+    console.log("O servidor está rodando no endereço http://localhost:8081");
+});
+
+// Chamando a biblioteca handlebars
+const handlebars = require('express-handlebars');
+
+// Configurando o handlebars e o template engine
+app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
+app.set('view.engine', 'handlebars');
+
+
+
+
+
+
+ /*
 // Rota chamando o html
 app.get("/", function(req, res){
     res.sendFile(__dirname + "/html/index.html");
@@ -23,10 +41,4 @@ app.get("/ola/:nome/:cargo/:idade", function(req, res){
     "<br><h2> Seu cargo é: " + req.params.cargo +
     "<br> Sua idade é: " + req.params.idade + "</h2>"
 );
-});
-
-
-// Porta do protocolo http
-app.listen(8081, function(){
-    console.log("O servidor está rodando no endereço http://localhost:8081");
-});
+}); */
