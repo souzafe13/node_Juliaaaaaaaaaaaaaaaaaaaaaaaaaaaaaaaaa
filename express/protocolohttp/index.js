@@ -21,7 +21,7 @@ app.set('view.engine', 'handlebars');
 
 // Criar rota
 app.get('/cad', function(req, res){
-    res.send('Rota de cadastro de Posts');
+    res.render('formulario');
 });
 
 // Porta do protocolo http
