@@ -21,7 +21,12 @@ app.set('view.engine', 'handlebars');
 
 // Criar rota
 app.get('/cad', function(req, res){
-    res.render('formulario');
+    res.render('formulario.handlebars');
+});
+
+// Uma nova rota POST
+app.post('/add', function(req, res){
+    res.send('Formulário recebido!');
 });
 
 // Porta do protocolo http
