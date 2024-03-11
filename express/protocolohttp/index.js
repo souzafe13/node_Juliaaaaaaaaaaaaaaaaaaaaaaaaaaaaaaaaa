@@ -7,7 +7,7 @@ app.get("/", function(req, res){
     res.sendFile(__dirname + "/html/index.html");
 });
 
-// Rota 2 chamando o html
+// Rota 2 chamando o html - Sobre
 app.get("/sobre", function(req, res){
     res.sendFile(__dirname + "/html/sobre.html");
 });
