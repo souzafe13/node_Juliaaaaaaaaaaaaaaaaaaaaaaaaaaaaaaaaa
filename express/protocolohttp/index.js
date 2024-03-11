@@ -19,6 +19,11 @@ const sequelize2 = new sequelize('testenode', 'root', '', {
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view.engine', 'handlebars');
 
+// Criar rota
+app.get('/cad', function(req, res){
+    res.send('Rota de cadastro de Posts');
+});
+
 // Porta do protocolo http
 app.listen(8081, function(){
     console.log("O servidor está rodando no endereço http://localhost:8081");
