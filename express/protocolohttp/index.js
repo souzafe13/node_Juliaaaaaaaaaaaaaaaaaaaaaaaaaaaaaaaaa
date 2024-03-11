@@ -1,17 +1,15 @@
+// Biblioteca express
 var express = require('express');
 
 const app = express();
 
-// Porta do protocolo http
-app.listen(8081, function(){
-    console.log("O servidor está rodando no endereço http://localhost:8081");
-});
-
 // Chamando a biblioteca handlebars
 const handlebars = require('express-handlebars');
 
+// Biblioteca Sequelize
 const sequelize = require('sequelize');
 
+// Conexão com Banco de Dados
 const sequelize2 = new sequelize('testenode', 'root', '', {
     host: "localhost",
     dialect: 'mysql'
@@ -20,6 +18,11 @@ const sequelize2 = new sequelize('testenode', 'root', '', {
 // Configurando o handlebars e o template engine
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view.engine', 'handlebars');
+
+// Porta do protocolo http
+app.listen(8081, function(){
+    console.log("O servidor está rodando no endereço http://localhost:8081");
+});
 
 /*
 // Rota chamando o html
