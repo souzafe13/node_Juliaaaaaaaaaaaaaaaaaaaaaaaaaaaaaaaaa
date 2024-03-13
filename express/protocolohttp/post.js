@@ -16,17 +16,17 @@ const postTabela = db.sequelize2.define('postagens', {
 // Exportando a minha tabela
 module.exports = postTabela;
 
-/*
-postTabela.sync({force: true})
 
- Testando sucesso ou erro
+// postTabela.sync({force: true})
 
-.then(() => {
-    console.log('Tabela criada com sucesso!');
-})
-.catch((error) => {
-    console.log('Erro ao criar a tabela: ', error)
-})
+//  //Testando sucesso ou erro
 
-*/
+// .then(() => {
+//     console.log('Tabela criada com sucesso!');
+// })
+// .catch((error) => {
+//     console.log('Erro ao criar a tabela: ', error)
+// })
+
+
 

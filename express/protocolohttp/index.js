@@ -13,7 +13,11 @@ const bodyParser = require('body-parser');
 const Post = require('./post');
 
 // Configurando o handlebars e o template engine
-app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
+app.engine('handlebars', handlebars.engine({defaultLayout: 'main', runtimeOptions: {
+    allowProtoPropertiesByDefault:true,
+    allowProtoMethodsByDefault: true, 
+
+}}));
 app.set('view.engine', 'handlebars');
 
 // Configurando a body-parser
@@ -25,6 +29,13 @@ app.get('/cad', function(req, res){
     res.render('formulario.handlebars');
 });
 
+// rota para home
+app.get('/home', function(req, res){
+Post.findAll({order:[['id', 'DESC']]}).then(function(posts){
+    res.render('home.handlebars', {posts: posts})
+})
+})
+
 // Uma nova rota post
 app.post('/add', function(req, res){
     Post.create({
@@ -32,7 +43,7 @@ app.post('/add', function(req, res){
         conteudo: req.body.conteudo
     })
     .then(function(){
-        res.send("Post criado com sucesso!")
+        res.redirect('/home')
     })
     .catch(function(erro){
         res.send("Houve um erro: " + erro)
