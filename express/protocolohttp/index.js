@@ -6,27 +6,37 @@ const app = express();
 // Chamando a biblioteca handlebars
 const handlebars = require('express-handlebars');
 
-// Biblioteca Sequelize
-const sequelize = require('sequelize');
+// Chamando a biblioteca body-parser
+const bodyParser = require('body-parser');
 
-// Conexão com Banco de Dados
-const sequelize2 = new sequelize('testenode', 'root', '', {
-    host: "localhost",
-    dialect: 'mysql'
-});
+// Requisição da minha tabela
+const Post = require('./post');
 
 // Configurando o handlebars e o template engine
 app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
 app.set('view.engine', 'handlebars');
+
+// Configurando a body-parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // Criar rota
 app.get('/cad', function(req, res){
     res.render('formulario.handlebars');
 });
 
-// Uma nova rota POST
+// Uma nova rota post
 app.post('/add', function(req, res){
-    res.send('Formulário recebido!');
+    Post.create({
+        titulo: req.body.titulo,
+        conteudo: req.body.conteudo
+    })
+    .then(function(){
+        res.send("Post criado com sucesso!")
+    })
+    .catch(function(erro){
+        res.send("Houve um erro: " + erro)
+    })
 });
 
 // Porta do protocolo http
